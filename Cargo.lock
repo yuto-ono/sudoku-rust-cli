@@ -3,5 +3,5 @@
 version = 3
 
 [[package]]
-name = "sudoku-rust-cli"
+name = "sudoku"
 version = "0.1.0"
