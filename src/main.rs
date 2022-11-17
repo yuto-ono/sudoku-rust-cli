@@ -1,3 +1,4 @@
+use solver::*;
 use std::env;
 use sudoku::*;
 
@@ -11,6 +12,20 @@ fn main() {
         DEFAULT_FILE_NAME
     };
     let board_text = read_file(path);
-    let board = board_array_from_text(&board_text);
-    display_board(board);
+    let mut num_array = num_array_from_text(&board_text);
+    match solve(&mut num_array) {
+        SolveStatus::Success => {
+            println!("解けました！");
+            display_board(&num_array);
+        }
+        SolveStatus::Invalid => {
+            println!("不正なデータです。");
+        }
+        SolveStatus::Duplicated => {
+            println!("重複があります。");
+        }
+        SolveStatus::Unsolvable => {
+            println!("解けませんでした。");
+        }
+    }
 }
