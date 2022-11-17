@@ -1,5 +1,5 @@
 use solver::*;
-use std::env;
+use std::{env, time::Instant};
 use sudoku::*;
 
 const DEFAULT_FILE_NAME: &str = "sample/1.txt";
@@ -13,9 +13,11 @@ fn main() {
     };
     let board_text = read_file(path);
     let mut num_array = num_array_from_text(&board_text);
+    let start_time = Instant::now();
     match solve(&mut num_array) {
         SolveStatus::Success => {
-            println!("解けました！");
+            let end_time = Instant::now();
+            println!("解けました！ ({:?})", end_time.duration_since(start_time));
             display_board(&num_array);
         }
         SolveStatus::Invalid => {
