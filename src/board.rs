@@ -8,7 +8,6 @@ pub struct Board {
     pub is_valid: bool,
     cells: Vec<Cell>,
     pub length: u32,
-    pub related_ids_list: Vec<Vec<usize>>,
 }
 
 impl Board {
@@ -39,7 +38,6 @@ impl Board {
             cells,
             is_valid,
             length,
-            related_ids_list: Vec::with_capacity(100),
         }
     }
 
