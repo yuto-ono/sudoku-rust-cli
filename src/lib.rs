@@ -16,7 +16,7 @@ pub fn read_file(path: &str) -> String {
 }
 
 pub fn num_array_from_text(text: &str) -> [u32; BOARD_NUM] {
-    let mut num_array: [u32; BOARD_NUM] = [0; BOARD_NUM];
+    let mut num_array = [0; BOARD_NUM];
     let mut i = 0;
     for c in text.chars() {
         if c >= '0' && c <= '9' {
