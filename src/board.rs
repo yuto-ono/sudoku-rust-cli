@@ -72,6 +72,8 @@ impl Board {
             if (self.cells[selected_i].candidates & mask) != 0 {
                 let mut duplicated = false;
                 self.cells[selected_i].num = i;
+
+                // 関連セルの候補を更新
                 for &id in RELATED_IDS[selected_i].iter() {
                     let cell = &mut self.cells[id];
                     if cell.num == 0 && (cell.candidates & mask) != 0 {
@@ -84,6 +86,7 @@ impl Board {
                         changed_length += 1;
                     }
                 }
+
                 if !duplicated && (self.length == 0 || self.solve()) {
                     return true; // 解けた！
                 }
@@ -102,6 +105,9 @@ impl Board {
         false
     }
 
+    /**
+     * ソルブ結果を配列に書き出す
+     */
     pub fn output_array(&self, num_array: &mut [u32]) {
         for cell in self.cells.iter() {
             if cell.pos < num_array.len() {
