@@ -20,8 +20,11 @@ fn main() {
             println!("解けました！ ({:?})", end_time.duration_since(start_time));
             display_board(&num_array);
         }
-        SolveStatus::Invalid => {
+        SolveStatus::InvalidLength => {
             println!("不正なデータです。");
+        }
+        SolveStatus::NoEmpty => {
+            println!("空白のマスがありません。");
         }
         SolveStatus::Duplicated => {
             println!("重複があります。");
