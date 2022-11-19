@@ -62,11 +62,11 @@ impl Board {
                 for &id in RELATED_IDS[selected_i].iter() {
                     let cell = &mut self.cells[id];
                     if cell.num == 0 && (cell.candidates & mask) != 0 {
-                        if cell.length == 1 {
+                        if cell.candidates == mask {
                             duplicated = true;
                             break;
                         }
-                        cell.remove_candidate(mask);
+                        cell.candidates ^= mask;
                         changed_ids[changed_length] = id;
                         changed_length += 1;
                     }
@@ -79,7 +79,7 @@ impl Board {
 
                 // 変更したセルをもとに戻す
                 for j in 0..changed_length {
-                    self.cells[changed_ids[j]].add_candidate(mask);
+                    self.cells[changed_ids[j]].candidates ^= mask;
                 }
                 changed_length = 0;
             }
