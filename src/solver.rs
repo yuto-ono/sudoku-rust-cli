@@ -1,6 +1,7 @@
 use super::board::Board;
 use super::constants::BOARD_NUM;
 
+#[derive(Debug, PartialEq)]
 pub enum SolveStatus {
     Success,
     InvalidLength,
@@ -15,11 +16,11 @@ pub fn solve(num_array: &mut [u32]) -> SolveStatus {
     }
 
     let mut board = Board::new(&num_array);
-    if board.empty_len == 0 {
-        return SolveStatus::NoEmpty; // 空きマスがない
-    }
     if !board.is_valid {
         return SolveStatus::Duplicated; // 重複がある
+    }
+    if board.empty_len == 0 {
+        return SolveStatus::NoEmpty; // 空きマスがない
     }
     if !board.solve() {
         return SolveStatus::Unsolvable; // 解くことができない

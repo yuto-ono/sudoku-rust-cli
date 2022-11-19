@@ -4,6 +4,8 @@ mod board;
 pub mod constants;
 use constants::BOARD_NUM;
 pub mod solver;
+#[cfg(test)]
+mod test;
 
 pub fn read_file(path: &str) -> String {
     let mut f = File::open(path).expect("file not found");
