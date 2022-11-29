@@ -1,6 +1,5 @@
 use std::fs::File;
 use std::io::prelude::*;
-mod board;
 pub mod constants;
 use constants::BOARD_NUM;
 pub mod solver;
