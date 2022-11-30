@@ -1,10 +1,10 @@
 use std::fs::File;
 use std::io::prelude::*;
-pub mod constants;
-use constants::BOARD_NUM;
 pub mod solver;
 #[cfg(test)]
 mod test;
+
+const BOARD_NUM: usize = 9 * 9;
 
 pub fn read_file(path: &str) -> String {
     let mut f = File::open(path).expect("file not found");
